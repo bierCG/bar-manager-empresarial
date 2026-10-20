@@ -37,8 +37,9 @@ def cadastrar_produto(
     response_model=UpdateResponse
 )
 def atualizar_cadastro(
+    produto_id: int,
     dados: UpdateRequest,
     auth: Auth = Depends(requer_roles('empresa')),
     service: ProdutoService = Depends(get_service)
 ):
-    return service.atualizar_cadastro(dados, auth.sub)
+    return service.atualizar_cadastro(dados, produto_id, auth.sub)
